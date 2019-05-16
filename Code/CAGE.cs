@@ -21,7 +21,7 @@ namespace CAG
             Console.WriteLine("Press smth....");
             ConsoleKey c = Console.ReadKey(true).Key;
             //EXAMPLE:
-            GAME(new[] { "!@#", "!$)", "!O!" }, new[] { new[] { 12, 3, 45 }, new[] { 15, 5, 56 }, new[] { 14, 2, 40 } }, player, new[] { "Enemy: Hello!", "You: I will kill you!", "Enemy: HA!","You: LOL!" });
+            GAME(new[] { "!@#", "!$)", "!O!" }, new[] { new[] { 12, 3, 45 }, new[] { 15, 5, 56 }, new[] { 14, 2, 40 } }, player, 20, new[] { "Enemy: Hello!", "You: I will kill you!", "Enemy: HA!","You: LOL!" });
         }
         static void GAME(string[] enemys, int[][] stats, Player player, int hardlevel, string[] dialog)
             //запускает битву с мобами
