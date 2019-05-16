@@ -196,6 +196,75 @@ namespace CAG
             }//fighting
 
         }
+        static string[] RandomMapMaker(string[] LocationsNames){
+          int length = LocationsNames.Length;
+          string[] result = new string[length + length*6];
+          Random rand = new Random();
+          int spaces = 5;
+          int otstup = 0;
+          for(int i = 0; i < length; i++)
+          {
+            int rnd = rand.Next(3, 6);
+            for(int j = 0; j <= rnd; j++)
+            {
+              if (j == rnd)
+              {
+                result[otstup + j] = StringsPower(" ", spaces) + "o " + LocationsNames[i];
+                break;
+              }
+              string ways = "";
+              int randway;
+              if (spaces == 0)
+                randway = rand.Next(1);
+              else
+                randway = rand.Next(2);
+              if (randway == 0)
+                ways = @"\";
+              else if (randway == 1)
+                ways = @"|";
+              else if (randway == 2)
+                ways = "/";
+              result[otstup + j] = StringsPower(" ", spaces) + ways;
+              if (ways.Equals("/"))
+                spaces--;
+              else if (ways.Equals(@"\"))
+                spaces++;
+              }
+              otstup += (rnd + 1);
+            }
+            return result;
+        }
+        static void MapObserver(string[] map, int step)
+        {
+          int k = step;
+          int locind = 0;
+          ConsoleKey ckey = ConsoleKey.C;
+          while (ckey != ConsoleKey.Enter)
+          {
+            for (int i = k - 5; i < k; i++)
+            {
+              Console.WriteLine(map[i]);
+            }
+            ckey = Console.ReadKey(true).Key;
+            if (k < map.Length && locind <= map.Length && ckey == ConsoleKey.DownArrow)
+              k += 1;
+              else if (k > step && ckey == ConsoleKey.UpArrow)
+              {
+                locind = 0;
+                k -= 1;
+              }
+              Console.Clear();
+            }
+          }
+        static string StringsPower(string str, int length)
+          {
+              string result = "";
+              for(int i = 0; i < length; i++)
+              {
+                  result += str;
+              }
+              return result;
+          }
       }
   class Player{
     public int damage;
